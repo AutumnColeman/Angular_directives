@@ -18,11 +18,13 @@ app.directive('btButton', function() {
   return {
     transclude: true,
     scope: {
-      'type' : '='
+      'type' : '@'
     },
     controller: function($scope) {
-
+      if (!$scope.type) {
+        $scope.type = 'default';
+      }
     },
-    template: '<button class="btn btn-default">Click me</button>'
-  }
+    template: '<button class="btn btn-{{type}} ng-transclude"></button>'
+  };
 });
